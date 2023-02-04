@@ -1,19 +1,12 @@
-
 cmake_minimum_required(VERSION 3.15 FATAL_ERROR)
-project(cmake_map_reduce LANGUAGES CXX CUDA)
+project(cuda_first LANGUAGES CXX CUDA)
 
-set(CMAKE_CXX_STANDARD 11)
+enable_language(CUDA)
+include(CheckLanguage)
+check_language(CUDA)
+set(CMAKE_CXX_FLAGS "-O2 -Wall -Wextra")
 
-add_executable(CUDAMapReduce src/main.cpp src/cuda_functions.cu
-  )
-
-
-# We need to explicitly state that we need all CUDA files in the particle
-# library to be built with -dc as the member functions could be called by
-# other libraries and executables
-set_target_properties(CUDAMapReduce
-                       PROPERTIES CUDA_SEPARABLE_COMPILATION ON
-                      )
-
-
-
+add_executable(main main.cu)
+#set_target_properties(main PROPERTIES CUDA_ARCHITECTURES "8.6")
+target_compile_features(main PUBLIC cxx_std_11)
+target_compile_options(main PRIVATE $<$<COMPILE_LANGUAGE:CUDA>:-gencode arch=compute_80,code=sm_80>)
