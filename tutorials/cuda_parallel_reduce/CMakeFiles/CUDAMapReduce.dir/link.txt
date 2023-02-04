@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/CUDAMapReduce.dir/src/main.cpp.o CMakeFiles/CUDAMapReduce.dir/src/cuda_functions.cu.o CMakeFiles/CUDAMapReduce.dir/cmake_device_link.o -o CUDAMapReduce   -L/usr/local/cuda/targets/x86_64-linux/lib/stubs  -L/usr/local/cuda/targets/x86_64-linux/lib  -lcudadevrt -lcudart_static -lrt -lpthread -ldl 
